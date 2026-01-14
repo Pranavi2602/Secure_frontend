@@ -5,7 +5,7 @@ import TicketForm from './TicketForm';
 import ServiceRequestForm from './ServiceRequestForm';
 import ServiceSelectionDialog from './ServiceSelectionDialog';
 import AdminReplies from './AdminReplies';
-import UserNavigation from './UserNavigation';
+import { UserTopNav, UserBottomNav } from './UserNavigation';
 import { Shield, Sparkles, ArrowRight, Video, Flame, Bell, Zap, Droplets, Wind, Activity, Clock } from 'lucide-react';
 
 const categories = [
@@ -86,14 +86,17 @@ const UserDashboard = () => {
   if (showTicketForm) {
     return (
       <div className="h-screen bg-slate-950 flex flex-col overflow-hidden">
-        <UserNavigation />
-        <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-y-auto">
-          <TicketForm
-            category={selectedCategory}
-            onSuccess={handleTicketCreated}
-            onCancel={handleCancel}
-          />
+        <UserTopNav />
+        <main className="flex-1 relative overflow-y-auto scrollbar-hide">
+          <div className="flex items-start sm:items-center justify-center p-4 sm:p-6 lg:p-8 pt-4 pb-8 sm:pt-6 min-h-full">
+            <TicketForm
+              category={selectedCategory}
+              onSuccess={handleTicketCreated}
+              onCancel={handleCancel}
+            />
+          </div>
         </main>
+        <UserBottomNav />
       </div>
     );
   }
@@ -101,30 +104,33 @@ const UserDashboard = () => {
   if (showServiceRequestForm) {
     return (
       <div className="h-screen bg-slate-950 flex flex-col overflow-hidden">
-        <UserNavigation />
-        <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-y-auto">
-          <ServiceRequestForm
-            category={selectedCategory}
-            onSuccess={handleServiceRequestCreated}
-            onCancel={handleCancel}
-          />
+        <UserTopNav />
+        <main className="flex-1 relative overflow-y-auto scrollbar-hide">
+          <div className="flex items-start sm:items-center justify-center p-4 sm:p-6 lg:p-8 pt-4 pb-8 sm:pt-6 min-h-full">
+            <ServiceRequestForm
+              category={selectedCategory}
+              onSuccess={handleServiceRequestCreated}
+              onCancel={handleCancel}
+            />
+          </div>
         </main>
+        <UserBottomNav />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
-      {/* Background gradients */}
-      <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+    <div className="h-screen bg-slate-950 flex flex-col overflow-hidden relative">
+      {/* Background gradients - moved to fixed to stay behind everything */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[10%] left-[20%] w-[30%] h-[30%] rounded-full bg-blue-600/5 blur-[100px]" />
         <div className="absolute bottom-[20%] right-[10%] w-[40%] h-[40%] rounded-full bg-violet-600/5 blur-[100px]" />
       </div>
 
-      <UserNavigation />
+      <UserTopNav />
 
-      <div className="page-transition">
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10">
+      <main className="flex-1 overflow-y-auto relative z-10 page-transition scrollbar-hide">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 space-y-6 sm:space-y-8">
           {/* Header Hero Section */}
           <header className="relative group p-0.5 rounded-[24px] overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(59,130,246,0.12)] accelerate-gpu">
             {/* Animated gradient border */}
@@ -135,32 +141,32 @@ const UserDashboard = () => {
 
             <div className="relative z-10 bg-slate-950/30 rounded-[20px] p-4 lg:p-6 overflow-hidden">
               {/* Background decor icons */}
-              <div className="absolute -top-10 -right-10 opacity-[0.03] pointer-events-none group-hover:opacity-[0.05] transition-all duration-1000 group-hover:rotate-12 group-hover:scale-110">
-                <Shield className="w-48 h-48 lg:w-64 lg:h-64 text-white stroke-[0.5px]" />
+              <div className="absolute -top-6 sm:-top-10 -right-6 sm:-right-10 opacity-[0.03] pointer-events-none group-hover:opacity-[0.05] transition-all duration-1000 group-hover:rotate-12 group-hover:scale-110">
+                <Shield className="w-40 h-40 lg:w-64 lg:h-64 text-white stroke-[0.5px]" />
               </div>
 
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div className="max-w-xl">
-                  <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-bold uppercase tracking-[0.2em] animate-fade-in">
+                  <div className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.2em] animate-fade-in">
                       <Sparkles className="w-2.5 h-2.5" />
                       <span>Enterprise</span>
                     </div>
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-bold uppercase tracking-wider animate-pulse-slow">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider animate-pulse-slow">
                       <Activity className="w-2.5 h-2.5" />
                       <span>Normal</span>
                     </div>
                   </div>
 
-                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 tracking-tight leading-tight flex items-center flex-wrap gap-x-2">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3 tracking-tight leading-tight flex items-center flex-wrap gap-x-2">
                     Welcome back,
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-blue-400 bg-[length:200%_auto] animate-gradient whitespace-nowrap">
                       {user?.name || 'Partner'}
                     </span>
-                    <span className="inline-block animate-bounce-slow text-xl lg:text-2xl">👋</span>
+                    <span className="inline-block animate-bounce-slow text-lg sm:text-xl lg:text-2xl">👋</span>
                   </h1>
 
-                  <p className="text-slate-400 max-w-lg text-xs lg:text-sm leading-relaxed font-medium mb-4">
+                  <p className="text-slate-400 max-w-lg text-[10px] sm:text-xs lg:text-sm leading-relaxed font-medium mb-4">
                     Ready to manage your <span className="text-white font-bold italic">CCTV</span>, <span className="text-white font-bold italic">Fire Alarm</span>, and <span className="text-white font-bold italic">Security</span> systems?
                   </p>
 
@@ -202,7 +208,7 @@ const UserDashboard = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
               {categories.map((category, index) => (
                 <button
                   key={category.name}
@@ -210,35 +216,30 @@ const UserDashboard = () => {
                   onClick={() => handleCategoryClick(category.name)}
                   className="group relative overflow-hidden rounded-[20px] border border-white/5 bg-slate-900/40 p-0.5 hover:bg-slate-900/60 transition-all duration-500 hover:-translate-y-1 shadow-2xl hover:shadow-blue-500/10"
                 >
-                  <div className="bg-slate-950/20 rounded-[18px] p-4 lg:p-5 h-full flex flex-col items-center text-center transition-all duration-500 group-hover:bg-slate-950/40 border border-transparent group-hover:border-white/5 relative z-10">
-                    <div className="relative mb-3">
-                      <div className={`h-10 w-10 rounded-xl bg-${category.color}-500/10 border border-${category.color}-500/20 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]`}>
-                        <category.icon className={`w-4.5 h-4.5 text-${category.color}-400`} />
+                  <div className="bg-slate-950/20 rounded-[12px] sm:rounded-[18px] p-2 sm:p-4 lg:p-5 h-full flex flex-col items-center justify-center text-center transition-all duration-500 group-hover:bg-slate-950/40 border border-transparent group-hover:border-white/5 relative z-10 min-h-[100px] sm:min-h-0">
+                    <div className="relative mb-2 sm:mb-3 flex items-center justify-center">
+                      <div className={`h-8 w-8 sm:h-10 sm:w-10 rounded-lg sm:rounded-xl bg-${category.color}-500/10 border border-${category.color}-500/20 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]`}>
+                        <category.icon className={`w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 text-${category.color}-400`} />
                       </div>
                       {(index === 0 || index === 3) && (
-                        <div className="absolute -top-2 -right-6 px-2 py-0.5 rounded-full bg-blue-500 text-[8px] font-black text-white uppercase tracking-tighter animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+                        <div className="absolute -top-1 -right-2 sm:-top-2 sm:-right-6 px-1.5 py-0.5 rounded-full bg-blue-500 text-[6px] sm:text-[8px] font-black text-white uppercase tracking-tighter animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]">
                           New
                         </div>
                       )}
-                      <div className="absolute -right-8 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/20">
-                          <ArrowRight className="w-4 h-4 text-white" />
-                        </div>
-                      </div>
                     </div>
 
-                    <div className="mt-auto w-full">
-                      <h3 className="text-xl font-bold text-white mb-1 transition-colors tracking-tight">
+                    <div className="w-full">
+                      <h3 className="text-[10px] sm:text-lg md:text-xl font-bold text-white mb-0.5 sm:mb-1 transition-colors tracking-tight leading-tight">
                         {category.name}
                       </h3>
-                      <p className="text-xs text-slate-500 group-hover:text-slate-400 leading-relaxed font-medium">
+                      <p className="hidden sm:block text-[9px] sm:text-xs text-slate-500 group-hover:text-slate-400 leading-tight sm:leading-relaxed font-medium line-clamp-2 md:line-clamp-none">
                         Manage or request installations for <span className={`text-${category.color}-400/80`}>{category.name}</span> systems.
                       </p>
                     </div>
                   </div>
 
-                  {/* Decorative background element */}
-                  <div className={`absolute -bottom-10 -right-10 w-32 h-32 bg-${category.color}-500/5 blur-[50px] rounded-full group-hover:bg-${category.color}-500/10 transition-all duration-500`} />
+                  {/* Decorative background element scaled for mobile */}
+                  <div className={`absolute -bottom-6 -right-6 sm:-bottom-10 sm:-right-10 w-24 h-24 sm:w-32 sm:h-32 bg-${category.color}-500/5 blur-[100px] rounded-full group-hover:bg-${category.color}-500/10 transition-all duration-500`} />
                 </button>
               ))}
             </div>
@@ -258,8 +259,10 @@ const UserDashboard = () => {
               </div>
             </div>
           </section>
-        </main>
-      </div>
+        </div>
+      </main>
+
+      <UserBottomNav />
 
       {/* Service Selection Dialog */}
       <ServiceSelectionDialog

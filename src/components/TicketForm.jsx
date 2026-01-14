@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import api from '../services/api';
-import { Upload, X, Image as ImageIcon, ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { Upload, X, Image as ImageIcon, ArrowLeft, Calendar, Clock, Loader2 } from 'lucide-react';
 import LoadingState from './common/LoadingState';
 import SuccessState from './common/SuccessState';
 import { compressImage } from '../utils/imageUtils';
@@ -197,14 +197,14 @@ const TicketForm = ({ category, onSuccess, onCancel }) => {
         </button>
 
         <div className="glass-card rounded-[32px] border border-white/5 p-1 relative overflow-hidden group">
-          <div className="bg-slate-950/20 rounded-[28px] p-6 lg:p-8">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <ImageIcon className="w-7 h-7 text-white" />
+          <div className="bg-slate-950/20 rounded-[28px] p-5 sm:p-8">
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/20 flex-shrink-0">
+                <ImageIcon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-white tracking-tight">Raise a Ticket</h2>
-                <p className="text-slate-400 text-sm mt-1">Briefly explain the issue and we'll help you out.</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">Raise a Ticket</h2>
+                <p className="text-slate-400 text-xs sm:text-sm mt-1">Briefly explain the issue and we'll help you out.</p>
               </div>
             </div>
 
@@ -373,15 +373,24 @@ const TicketForm = ({ category, onSuccess, onCancel }) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-[2] relative overflow-hidden group h-14 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-2xl font-bold uppercase tracking-wider text-sm transition-all hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] disabled:opacity-50 active:scale-95 flex items-center justify-center"
+                  className="w-full max-w-md mx-auto sm:mx-0 sm:flex-[2] relative overflow-hidden group h-14 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-2xl font-bold uppercase tracking-wider text-sm transition-all hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] disabled:opacity-50 active:scale-95 flex items-center justify-center shadow-lg shadow-blue-500/20 sm:shadow-none"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"></div>
-                  <span className="relative z-10">{loading ? 'Processing...' : 'Submit Priority Ticket'}</span>
+                  <div className="relative z-10 flex items-center gap-2">
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Processing...</span>
+                      </>
+                    ) : (
+                      <span>Submit Priority Ticket</span>
+                    )}
+                  </div>
                 </button>
                 <button
                   type="button"
                   onClick={onCancel}
-                  className="flex-1 h-14 border border-white/10 bg-slate-900/50 text-slate-400 hover:text-white hover:border-white/20 rounded-2xl font-bold uppercase tracking-wider text-xs transition-all active:scale-95"
+                  className="w-full max-w-md mx-auto sm:mx-0 sm:flex-1 h-14 border border-white/10 bg-slate-900/50 text-slate-400 hover:text-white hover:border-white/20 rounded-2xl font-bold uppercase tracking-wider text-xs transition-all active:scale-95"
                 >
                   Cancel
                 </button>

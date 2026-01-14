@@ -356,10 +356,10 @@ const Register = () => {
       </div>
 
       {/* RIGHT SIDE - REGISTRATION FORM */}
-      <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
-        <div className="w-full max-w-2xl px-8 mt-20">
+      <div className="flex-1 flex items-start sm:items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
+        <div className="w-full max-w-2xl px-4 sm:px-8 mt-4 sm:mt-24">
 
-          <div className="glass-card p-6 sm:p-8 md:p-10 w-full animate-fade-in-up">
+          <div className="glass-card p-5 sm:p-10 w-full animate-fade-in-up">
 
             <div className="flex items-center justify-between mb-8">
               <div>

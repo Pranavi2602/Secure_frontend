@@ -117,7 +117,7 @@ const ForgotPassword = () => {
       </div>
 
       {/* RIGHT SIDE - FORM */}
-      <div className="flex-1 flex items-center justify-center p-6 relative z-10">
+      <div className="flex-1 flex items-start sm:items-center justify-center p-6 pt-8 sm:pt-6 relative z-10">
         <div className="w-full max-w-md">
 
           {/* Back Button */}

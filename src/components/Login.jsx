@@ -220,8 +220,8 @@ const Login = () => {
       </div>
 
       {/* RIGHT SIDE - FORM */}
-      <div className="flex-1 flex items-center justify-center p-6 relative z-10">
-        <div className="w-full max-w-md">
+      <div className="flex-1 flex items-start sm:items-center justify-center p-4 sm:p-6 relative z-10">
+        <div className="w-full max-w-md mt-6 sm:mt-0">
 
           {/* Toggle Auth Type - Positioned above card or inside, let's put it above for clean look or inside top-right */}
           <div className="flex justify-end mb-4">
@@ -235,7 +235,7 @@ const Login = () => {
           </div>
 
           {/* Form Card */}
-          <div className="glass-card p-8 animate-fade-in-up border border-white/5 bg-slate-900/40 backdrop-blur-xl rounded-3xl shadow-2xl">
+          <div className="glass-card p-6 sm:p-8 animate-fade-in-up border border-white/5 bg-slate-900/40 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl">
 
             {/* Header */}
             <div className="mb-8">

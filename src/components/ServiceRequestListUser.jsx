@@ -193,28 +193,28 @@ const ServiceRequestListUser = ({ onRefresh }) => {
             {/* Status accent line */}
             <div className={`absolute top-0 left-0 bottom-0 w-1 ${request.status === 'New' || request.status === 'Open' ? 'bg-amber-500' : request.status === 'In Progress' ? 'bg-blue-500' : 'bg-green-500'}`}></div>
 
-            <div className="p-5">
-              <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
+            <div className="p-4 sm:p-5">
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1 flex-wrap">
-                    <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors leading-tight">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-1 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-blue-400 transition-colors leading-tight">
                       {request.title}
                     </h3>
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold border uppercase tracking-wider ${getStatusColor(request.status)}`}>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[8px] font-bold border uppercase tracking-wider ${getStatusColor(request.status)}`}>
                       {getStatusIcon(request.status)}
                       {request.status}
                     </span>
                     {adminRepliesInfo.hasReplies && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-violet-500/10 text-violet-400 border border-violet-500/20 rounded-full text-[9px] font-bold uppercase tracking-wider">
-                        <MessageSquare className="w-3 h-3" />
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-violet-500/10 text-violet-400 border border-violet-500/20 rounded-full text-[8px] font-bold uppercase tracking-wider">
+                        <MessageSquare className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         {adminRepliesInfo.count} {adminRepliesInfo.count === 1 ? 'Reply' : 'Replies'}
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 text-[10px] text-slate-500 font-mono text-uppercase">
+                  <div className="flex items-center gap-3 sm:gap-4 text-[9px] sm:text-[10px] text-slate-500 font-mono text-uppercase">
                     <span>{request.requestId}</span>
-                    <span className="flex items-center gap-1 text-[11px]">
-                      <Calendar className="w-3 h-3" />
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                       {new Date(request.createdAt).toLocaleDateString()}
                     </span>
                   </div>
@@ -227,10 +227,10 @@ const ServiceRequestListUser = ({ onRefresh }) => {
                     setRequestToDelete(request);
                     setShowDeleteModal(true);
                   }}
-                  className="p-2 text-red-500 hover:bg-red-400/10 rounded-xl transition-all border border-transparent hover:border-red-400/20"
+                  className="p-1.5 sm:p-2 text-red-500 hover:bg-red-400/10 rounded-xl transition-all border border-transparent hover:border-red-400/20 self-end sm:self-start"
                   title="Delete request"
                 >
-                  <Trash2 className="w-5 h-5" />
+                  <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
 

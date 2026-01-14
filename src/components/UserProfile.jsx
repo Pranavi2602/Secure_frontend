@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { User, Mail, Phone, Building, MapPin, Save, ArrowLeft, Loader2, Calendar, Clock, ExternalLink } from 'lucide-react';
 import LoadingState from './common/LoadingState';
-import UserNavigation from './UserNavigation';
+import { UserTopNav, UserBottomNav } from './UserNavigation';
 
 const UserProfile = () => {
   const { user, updateUser } = useAuth();
@@ -127,51 +127,52 @@ const UserProfile = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col">
-        <UserNavigation />
-        <div className="flex-1 flex flex-col items-center justify-center pt-20">
+      <div className="h-screen bg-slate-950 flex flex-col overflow-hidden">
+        <UserTopNav />
+        <div className="flex-1 flex flex-col items-center justify-center p-4">
           <LoadingState message="Retrieving Profile Data" />
         </div>
+        <UserBottomNav />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden flex flex-col">
+    <div className="h-screen bg-slate-950 flex flex-col overflow-hidden relative">
       {saving && <LoadingState message="Saving Profile Changes..." fullPage={true} />}
       {/* Background gradients */}
-      <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[10%] left-[20%] w-[30%] h-[30%] rounded-full bg-blue-600/5 blur-[100px]" />
         <div className="absolute bottom-[20%] right-[10%] w-[40%] h-[40%] rounded-full bg-violet-600/5 blur-[100px]" />
       </div>
 
-      <UserNavigation />
+      <UserTopNav />
 
-      <main className="flex-1 overflow-y-auto relative z-10 page-transition">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
+      <main className="flex-1 overflow-y-auto relative z-10 page-transition scrollbar-hide">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 relative z-10">
+          <div className="flex items-center justify-between mb-6 sm:mb-8">
+            <div className="flex items-center gap-3 sm:gap-4">
               <button
                 onClick={() => navigate('/')}
-                className="group p-3 rounded-2xl bg-slate-900/50 border border-white/5 text-slate-400 hover:text-white hover:bg-slate-800/80 transition-all active:scale-95"
+                className="group p-2.5 sm:p-3 rounded-2xl bg-slate-900/50 border border-white/5 text-slate-400 hover:text-white hover:bg-slate-800/80 transition-all active:scale-95"
               >
-                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
               </button>
               <div>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Account settings</p>
-                <p className="text-xl font-bold text-white tracking-tight leading-none">Security Profile</p>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Account settings</p>
+                <p className="text-lg sm:text-xl font-bold text-white tracking-tight leading-none">Security Profile</p>
               </div>
             </div>
           </div>
-          <div className="glass-card rounded-[32px] border border-white/5 p-1 relative overflow-hidden">
-            <div className="bg-slate-950/20 rounded-[28px] p-8 lg:p-12">
-              <div className="flex flex-col md:flex-row md:items-center gap-6 mb-12">
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-xl shadow-blue-500/20 ring-4 ring-white/5">
-                  <User className="w-10 h-10 text-white" />
+          <div className="glass-card rounded-[2rem] sm:rounded-[32px] border border-white/5 p-1 relative overflow-hidden">
+            <div className="bg-slate-950/20 rounded-[1.75rem] sm:rounded-[28px] p-5 sm:p-8 lg:p-12">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8 sm:mb-12">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-xl shadow-blue-500/20 ring-4 ring-white/5">
+                  <User className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-2">Personal Identity</h1>
-                  <p className="text-slate-400 font-medium">Manage your contact information and office coordinates.</p>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-1 sm:mb-2">Personal Identity</h1>
+                  <p className="text-xs sm:text-sm text-slate-400 font-medium">Manage your contact information and office coordinates.</p>
                 </div>
               </div>
 
@@ -452,6 +453,7 @@ const UserProfile = () => {
           </div>
         </div>
       </main>
+      <UserBottomNav />
     </div>
   );
 };

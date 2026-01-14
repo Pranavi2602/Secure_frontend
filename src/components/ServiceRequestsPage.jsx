@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Shield, ArrowLeft } from 'lucide-react';
 import ServiceRequestListUser from './ServiceRequestListUser';
-import UserNavigation from './UserNavigation';
+import { UserTopNav, UserBottomNav } from './UserNavigation';
 
 const ServiceRequestsPage = () => {
   const { user } = useAuth();
@@ -17,19 +17,19 @@ const ServiceRequestsPage = () => {
   }, [user, navigate]);
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden flex flex-col">
+    <div className="h-screen bg-slate-950 flex flex-col overflow-hidden relative">
       {/* Background gradients */}
-      <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[10%] left-[20%] w-[30%] h-[30%] rounded-full bg-blue-600/5 blur-[100px]" />
         <div className="absolute bottom-[20%] right-[10%] w-[40%] h-[40%] rounded-full bg-violet-600/5 blur-[100px]" />
       </div>
 
-      <UserNavigation />
+      <UserTopNav />
 
-      <main className="flex-1 overflow-y-auto relative z-10 page-transition">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 overflow-y-auto relative z-10 page-transition scrollbar-hide">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
           <section className="pb-10">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-6 sm:mb-8">
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => navigate('/')}
@@ -53,6 +53,7 @@ const ServiceRequestsPage = () => {
           </section>
         </div>
       </main>
+      <UserBottomNav />
     </div>
   );
 };
